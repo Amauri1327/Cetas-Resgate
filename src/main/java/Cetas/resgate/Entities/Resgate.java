@@ -10,12 +10,13 @@ import javax.print.attribute.standard.Destination;
 import java.io.Serial;
 import java.io.Serializable;
 
-@Getter
-@Setter
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "tb_resgate")
+@Getter
+@Setter
 public class Resgate implements Serializable {
 
     @Id
