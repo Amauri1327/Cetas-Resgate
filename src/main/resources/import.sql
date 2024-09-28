@@ -1,0 +1,1 @@
+INSERT INTO tb_resgate (applicant, phone_applicant, specie, address, neighborhood, city, data, animal_situation, animal_destination) VALUES ('John Doe', '123-456-7890', 'Pagaio', 'Rua A', 'Industrial', 'Aracaju', '28/09/2010', 'Saudavel', 'Soltura');
