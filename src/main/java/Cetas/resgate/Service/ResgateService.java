@@ -4,10 +4,12 @@ import Cetas.resgate.Dto.ResgateDto;
 import Cetas.resgate.Entities.Resgate;
 import Cetas.resgate.Repositories.ResgateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ResgateService {
 
     @Autowired
