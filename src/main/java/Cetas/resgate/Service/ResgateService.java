@@ -26,4 +26,18 @@ public class ResgateService {
         Resgate entity = resg.orElseThrow(() -> new RuntimeException("Entity not found"));
         return new ResgateDto(entity);
     }
+
+    public ResgateDto insert(ResgateDto dto) {
+        Resgate obj = new Resgate();
+        obj.setApplicant(dto.applicant());
+        obj.setPhoneApplicant(dto.phoneApplicant());
+        obj.setSpecie(dto.specie());
+        obj.setAddress(dto.address());
+        obj.setCity(dto.city());
+        obj.setData(dto.data());
+        obj.setAnimalSituation(dto.animalSituation());
+        obj.setAnimalDestination(dto.animalDestination());
+        repo.save(obj);
+        return new ResgateDto(obj);
+    }
 }
