@@ -34,5 +34,10 @@ public class ResgateResource {
         dto = service.insert(dto);
         return ResponseEntity.ok().body(dto);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<ResgateDto> update(@PathVariable Long id, @RequestBody ResgateDto dto){
+        dto = service.update(dto, id);
+        return ResponseEntity.ok().body(dto);
+    }
 
 }

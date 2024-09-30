@@ -3,6 +3,7 @@ package Cetas.resgate.Service;
 import Cetas.resgate.Dto.ResgateDto;
 import Cetas.resgate.Entities.Resgate;
 import Cetas.resgate.Repositories.ResgateRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,21 @@ public class ResgateService {
 
     public ResgateDto insert(ResgateDto dto) {
         Resgate obj = new Resgate();
+        obj.setApplicant(dto.applicant());
+        obj.setPhoneApplicant(dto.phoneApplicant());
+        obj.setSpecie(dto.specie());
+        obj.setAddress(dto.address());
+        obj.setCity(dto.city());
+        obj.setData(dto.data());
+        obj.setAnimalSituation(dto.animalSituation());
+        obj.setAnimalDestination(dto.animalDestination());
+        repo.save(obj);
+        return new ResgateDto(obj);
+    }
+
+    @Transactional
+    public ResgateDto update(ResgateDto dto, Long id) {
+        Resgate obj = repo.getReferenceById(id);
         obj.setApplicant(dto.applicant());
         obj.setPhoneApplicant(dto.phoneApplicant());
         obj.setSpecie(dto.specie());
