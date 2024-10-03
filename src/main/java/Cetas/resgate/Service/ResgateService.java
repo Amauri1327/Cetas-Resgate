@@ -3,8 +3,12 @@ package Cetas.resgate.Service;
 import Cetas.resgate.Dto.ResgateDto;
 import Cetas.resgate.Entities.Resgate;
 import Cetas.resgate.Repositories.ResgateRepository;
+import Cetas.resgate.Service.Exceptions.DatabaseException;
+import Cetas.resgate.Service.Exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +28,7 @@ public class ResgateService {
 
     public ResgateDto findById(Long id) {
         Optional<Resgate> resg = repo.findById(id);
-        Resgate entity = resg.orElseThrow(() -> new RuntimeException("Entity not found"));
+        Resgate entity = resg.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
         return new ResgateDto(entity);
     }
 
@@ -44,20 +48,33 @@ public class ResgateService {
 
     @Transactional
     public ResgateDto update(ResgateDto dto, Long id) {
-        Resgate obj = repo.getReferenceById(id);
-        obj.setApplicant(dto.applicant());
-        obj.setPhoneApplicant(dto.phoneApplicant());
-        obj.setSpecie(dto.specie());
-        obj.setAddress(dto.address());
-        obj.setCity(dto.city());
-        obj.setData(dto.data());
-        obj.setAnimalSituation(dto.animalSituation());
-        obj.setAnimalDestination(dto.animalDestination());
-        repo.save(obj);
-        return new ResgateDto(obj);
+        try {
+            Resgate obj = repo.getReferenceById(id);
+            obj.setApplicant(dto.applicant());
+            obj.setPhoneApplicant(dto.phoneApplicant());
+            obj.setSpecie(dto.specie());
+            obj.setAddress(dto.address());
+            obj.setCity(dto.city());
+            obj.setData(dto.data());
+            obj.setAnimalSituation(dto.animalSituation());
+            obj.setAnimalDestination(dto.animalDestination());
+            repo.save(obj);
+            return new ResgateDto(obj);
+        }
+        catch (EntityNotFoundException e){
+            throw new ResourceNotFoundException("Id not found: " + id);
+        }
     }
 
     public void delete(Long id) {
-        repo.deleteById(id);
+        if(!repo.existsById(id)){
+            throw new ResourceNotFoundException("Id not found: " + id);
+        }
+        try {
+            repo.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e){
+            throw new DatabaseException("Integrity violation");
+        }
     }
 }
