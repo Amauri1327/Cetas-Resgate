@@ -56,4 +56,8 @@ public class ResgateService {
         repo.save(obj);
         return new ResgateDto(obj);
     }
+
+    public void delete(Long id) {
+        repo.deleteById(id);
+    }
 }
