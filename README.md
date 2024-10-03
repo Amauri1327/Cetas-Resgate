@@ -13,3 +13,9 @@ Facilitar o manuseio e o controle de resgate e soltura de animais.
 
 ## Motivação 
 Melhorar e simplificar a forma de armazenar os dados e ajudar uma colega de trabalho.
+
+## Exemplos de Endpoints
+- **GET** `/resgates`: Retorna todos os resgates.
+- **POST** `/resgates`: Registra um novo resgate.
+- **PUT** `/resgates/{id}`: Atualiza um resgate existente.
+- **DELETE** `/resgates/{id}`: Remove um resgate.
