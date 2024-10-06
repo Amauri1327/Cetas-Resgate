@@ -19,3 +19,6 @@ Melhorar e simplificar a forma de armazenar os dados e ajudar uma colega de trab
 - **POST** `/resgates`: Registra um novo resgate.
 - **PUT** `/resgates/{id}`: Atualiza um resgate existente.
 - **DELETE** `/resgates/{id}`: Remove um resgate.
+- **GET** `/resgates/report`: Retorna relatorio de todos os solicitantes.
+- **GET** `/resgates/report/{id}`: Retorna dados do solicitante.
+
