@@ -1,5 +1,6 @@
 package Cetas.resgate.Service;
 
+import Cetas.resgate.Dto.ApplicantDto;
 import Cetas.resgate.Dto.ResgateDto;
 import Cetas.resgate.Entities.Resgate;
 import Cetas.resgate.Repositories.ResgateRepository;
@@ -76,5 +77,11 @@ public class ResgateService {
         catch (DataIntegrityViolationException e){
             throw new DatabaseException("Integrity violation");
         }
+    }
+
+    public ApplicantDto applicantReport(Long id) {
+        Optional<Resgate> resg = repo.findById(id);
+        Resgate applicant = resg.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+        return new ApplicantDto(applicant);
     }
 }

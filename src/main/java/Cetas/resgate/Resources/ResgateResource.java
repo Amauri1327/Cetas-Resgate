@@ -1,9 +1,9 @@
 package Cetas.resgate.Resources;
 
 
+import Cetas.resgate.Dto.ApplicantDto;
 import Cetas.resgate.Dto.ResgateDto;
 import Cetas.resgate.Service.ResgateService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,5 +45,13 @@ public class ResgateResource {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    // retornar dados apenas do solicitante
+    @GetMapping("/report/{id}")
+    public ResponseEntity<ApplicantDto> applicant(@PathVariable Long id){
+        ApplicantDto dto = service.applicantReport(id);
+        return ResponseEntity.ok().body(dto);
+    }
+
 
 }
