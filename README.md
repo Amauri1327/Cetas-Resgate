@@ -21,4 +21,7 @@ Melhorar e simplificar a forma de armazenar os dados e ajudar uma colega de trab
 - **DELETE** `/resgates/{id}`: Remove um resgate.
 - **GET** `/resgates/report`: Retorna relatorio de todos os solicitantes.
 - **GET** `/resgates/report/{id}`: Retorna dados do solicitante.
+- **GET** `/report/excel`: Exporta os dados do solicitante em Excel.
+
+
 

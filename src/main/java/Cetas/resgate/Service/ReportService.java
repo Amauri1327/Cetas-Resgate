@@ -1,7 +1,6 @@
 package Cetas.resgate.Service;
 
 import Cetas.resgate.Dto.ResgateDto;
-import Cetas.resgate.Entities.Resgate;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
