@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value="/resgates")
+@CrossOrigin(origins = "http://localhost:5173") //Permite o acesso apenas do frontend
 public class ResgateResource {
 
     @Autowired
