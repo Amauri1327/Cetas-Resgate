@@ -39,6 +39,7 @@ public class ResgateService {
         obj.setPhoneApplicant(dto.phoneApplicant());
         obj.setSpecie(dto.specie());
         obj.setAddress(dto.address());
+        obj.setNeighborhood(dto.neighborhood());
         obj.setCity(dto.city());
         obj.setData(dto.data());
         obj.setAnimalSituation(dto.animalSituation());
@@ -55,6 +56,7 @@ public class ResgateService {
             obj.setPhoneApplicant(dto.phoneApplicant());
             obj.setSpecie(dto.specie());
             obj.setAddress(dto.address());
+            obj.setNeighborhood(dto.neighborhood());
             obj.setCity(dto.city());
             obj.setData(dto.data());
             obj.setAnimalSituation(dto.animalSituation());
