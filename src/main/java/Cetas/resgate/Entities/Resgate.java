@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +26,7 @@ public class Resgate implements Serializable {
     private String address;
     private String neighborhood;
     private String city;
-    private String data;
+    private LocalDate data;
     private String animalSituation;
     private String animalDestination;
 }

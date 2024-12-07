@@ -2,6 +2,8 @@ package Cetas.resgate.Dto;
 
 import Cetas.resgate.Entities.Resgate;
 
+import java.time.LocalDate;
+
 public record ResgateDto(
 
         Long id,
@@ -11,7 +13,7 @@ public record ResgateDto(
         String address,
         String neighborhood,
         String city,
-        String data,
+        LocalDate data,
         String animalSituation,
         String animalDestination)
 {

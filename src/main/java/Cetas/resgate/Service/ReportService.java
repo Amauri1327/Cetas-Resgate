@@ -1,6 +1,8 @@
 package Cetas.resgate.Service;
 
 import Cetas.resgate.Dto.ResgateDto;
+import Cetas.resgate.Entities.Resgate;
+import Cetas.resgate.Repositories.ResgateRepository;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -9,10 +11,17 @@ import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class ReportService {
+
+    private final ResgateRepository resgateRepository;
+
+    public ReportService(ResgateRepository resgateRepository){
+        this.resgateRepository = resgateRepository;
+    }
 
     public ByteArrayOutputStream generateExcelReport(List<ResgateDto> resgate) throws IOException {
         // Criar um novo workbook e uma nova planilha
@@ -44,5 +53,28 @@ public class ReportService {
             workbook.write(out);
             return out;
         }
+    }
+
+    public List<ResgateDto> buscarResgatesPorEspecieEIntervaloDeDatas(
+            String especie,
+            LocalDate dataInicio,
+            LocalDate dataFim) {
+
+        List<Resgate> resgates = resgateRepository.findRescuesBySpecieAndDateRange(especie, dataInicio, dataFim);
+
+        return resgates.stream()
+                .map(resgate -> new ResgateDto(
+                  resgate.getId(),
+                  resgate.getApplicant(),
+                    resgate.getPhoneApplicant(),
+                    resgate.getSpecie(),
+                    resgate.getAddress(),
+                    resgate.getNeighborhood(),
+                    resgate.getCity(),
+                    resgate.getData(),
+                    resgate.getAnimalSituation(),
+                        resgate.getAnimalDestination()))
+                .toList();
+
     }
 }

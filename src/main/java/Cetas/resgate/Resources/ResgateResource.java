@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
@@ -24,7 +26,6 @@ public class ResgateResource {
     private ResgateService service;
     @Autowired
     private ReportService reportService;
-
 
     @GetMapping()
     public ResponseEntity<List<ResgateDto>> findAll(){
@@ -80,6 +81,19 @@ public class ResgateResource {
                 .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=relatorio.xlsx")
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(out.toByteArray());
+    }
+
+    @GetMapping("/list-animalsName-between-dates")
+    public List<ResgateDto> buscarResgates(
+            @RequestParam String especie,
+            @RequestParam LocalDate dataInicio,
+            @RequestParam LocalDate dataFim) {
+
+
+        //convertendo as datas recebidas como String para LocalDate
+
+
+        return reportService.buscarResgatesPorEspecieEIntervaloDeDatas(especie, dataInicio, dataFim);
     }
 
 
