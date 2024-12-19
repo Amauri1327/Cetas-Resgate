@@ -104,4 +104,13 @@ public class ResgateResource {
                 .body(out.toByteArray());
     }
 
+    @GetMapping("/list-rescue-between-dates")
+    public List<ResgateDto> findRescueByDateRange (
+            @RequestParam LocalDate startDate,
+            @RequestParam LocalDate endDate) {
+
+        return reportService.findRescueByDateRange(startDate, endDate);
+
+    }
+
 }

@@ -130,4 +130,24 @@ public class ReportService {
             return out;
         }
     }
+
+    public List<ResgateDto> findRescueByDateRange (LocalDate startDate, LocalDate endDate){
+
+        List<Resgate> resgates = resgateRepository.findRescueByDateRange(startDate, endDate);
+
+        return resgates.stream()
+                .map(resgate -> new ResgateDto(
+                        resgate.getId(),
+                        resgate.getApplicant(),
+                        resgate.getPhoneApplicant(),
+                        resgate.getSpecie(),
+                        resgate.getAddress(),
+                        resgate.getNeighborhood(),
+                        resgate.getCity(),
+                        resgate.getData(),
+                        resgate.getAnimalSituation(),
+                        resgate.getAnimalDestination()))
+                .toList();
+    }
+
 }
