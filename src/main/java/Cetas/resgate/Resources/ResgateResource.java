@@ -56,7 +56,7 @@ public class ResgateResource {
     }
 
 
-    @GetMapping("/report")
+    @GetMapping("/report/applicant")
     public ResponseEntity<List<ApplicantDto>> allApplicant(){
         List<ApplicantDto> listDtos = service.applicantReportList();
         return ResponseEntity.ok(listDtos);
@@ -64,13 +64,13 @@ public class ResgateResource {
 
 
     // retornar dados apenas do solicitante
-    @GetMapping("/report/{id}")
+    @GetMapping("/report/applicant/{id}")
     public ResponseEntity<ApplicantDto> applicant(@PathVariable Long id){
         ApplicantDto dto = service.applicantReport(id);
         return ResponseEntity.ok().body(dto);
     }
 
-    @GetMapping("/report/excel")
+    @GetMapping("/report/applicant/excel")
     public ResponseEntity<byte[]> downloadExcelReport() throws IOException {
         List<ResgateDto> entities = service.findAll();
 
