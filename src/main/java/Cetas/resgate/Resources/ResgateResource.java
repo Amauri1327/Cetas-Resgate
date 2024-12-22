@@ -3,6 +3,7 @@ package Cetas.resgate.Resources;
 
 import Cetas.resgate.Dto.ApplicantDto;
 import Cetas.resgate.Dto.ResgateDto;
+import Cetas.resgate.Service.ApplicantReportService;
 import Cetas.resgate.Service.ReportService;
 import Cetas.resgate.Service.ResgateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class ResgateResource {
     private ResgateService service;
     @Autowired
     private ReportService reportService;
+    @Autowired
+    private ApplicantReportService applicantReportService;
 
     @GetMapping()
     public ResponseEntity<List<ResgateDto>> findAll(){
@@ -58,7 +61,7 @@ public class ResgateResource {
 
     @GetMapping("/report/applicant")
     public ResponseEntity<List<ApplicantDto>> allApplicant(){
-        List<ApplicantDto> listDtos = service.applicantReportList();
+        List<ApplicantDto> listDtos = applicantReportService.applicantReportList();
         return ResponseEntity.ok(listDtos);
     }
 
@@ -66,7 +69,7 @@ public class ResgateResource {
     // retornar dados apenas do solicitante
     @GetMapping("/report/applicant/{id}")
     public ResponseEntity<ApplicantDto> applicant(@PathVariable Long id){
-        ApplicantDto dto = service.applicantReport(id);
+        ApplicantDto dto = applicantReportService.applicantReport(id);
         return ResponseEntity.ok().body(dto);
     }
 

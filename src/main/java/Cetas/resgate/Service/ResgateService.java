@@ -81,14 +81,4 @@ public class ResgateService {
         }
     }
 
-    public ApplicantDto applicantReport(Long id) {
-        Optional<Resgate> resg = repo.findById(id);
-        Resgate applicant = resg.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
-        return new ApplicantDto(applicant);
-    }
-
-    public List<ApplicantDto> applicantReportList() {
-        List<Resgate> resg = repo.findAll();
-        return resg.stream().map(ApplicantDto::new).collect(Collectors.toList());
-    }
 }
