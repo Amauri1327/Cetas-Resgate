@@ -77,10 +77,10 @@ public class ResgateResource {
     public ResponseEntity<byte[]> downloadExcelReport() throws IOException {
         List<ResgateDto> entities = service.findAll();
 
-        ByteArrayOutputStream out = reportService.generateExcelReport(entities);
+        ByteArrayOutputStream out = applicantReportService.generateExcelReport(entities);
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=relatorio.xlsx")
+                .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=relatorio-todos-solicitantes.xlsx")
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(out.toByteArray());
     }

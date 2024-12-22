@@ -1,6 +1,5 @@
 package Cetas.resgate.Service;
 
-import Cetas.resgate.Dto.ApplicantDto;
 import Cetas.resgate.Dto.ResgateDto;
 import Cetas.resgate.Entities.Resgate;
 import Cetas.resgate.Repositories.ResgateRepository;
