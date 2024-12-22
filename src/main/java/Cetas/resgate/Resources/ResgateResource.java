@@ -108,9 +108,8 @@ public class ResgateResource {
     public List<ResgateDto> findRescueByDateRange (
             @RequestParam LocalDate startDate,
             @RequestParam LocalDate endDate) {
-
+        
         return reportService.findRescueByDateRange(startDate, endDate);
-
     }
 
 }
