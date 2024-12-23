@@ -13,11 +13,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class ReportService {
+public class ReportResgateService {
 
     private final ResgateRepository resgateRepository;
 
-    public ReportService(ResgateRepository resgateRepository){
+    public ReportResgateService(ResgateRepository resgateRepository){
         this.resgateRepository = resgateRepository;
     }
 

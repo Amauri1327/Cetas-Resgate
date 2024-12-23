@@ -4,7 +4,7 @@ package Cetas.resgate.Resources;
 import Cetas.resgate.Dto.ApplicantDto;
 import Cetas.resgate.Dto.ResgateDto;
 import Cetas.resgate.Service.ApplicantReportService;
-import Cetas.resgate.Service.ReportService;
+import Cetas.resgate.Service.ReportResgateService;
 import Cetas.resgate.Service.ResgateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -25,7 +25,7 @@ public class ResgateResource {
     @Autowired
     private ResgateService service;
     @Autowired
-    private ReportService reportService;
+    private ReportResgateService reportService;
     @Autowired
     private ApplicantReportService applicantReportService;
 
