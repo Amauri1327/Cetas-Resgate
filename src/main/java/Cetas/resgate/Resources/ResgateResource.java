@@ -65,7 +65,6 @@ public class ResgateResource {
         return ResponseEntity.ok(listDtos);
     }
 
-
     // retornar dados apenas do solicitante
     @GetMapping("/report/applicant/{id}")
     public ResponseEntity<ApplicantDto> applicant(@PathVariable Long id){
@@ -83,6 +82,13 @@ public class ResgateResource {
                 .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=relatorio-todos-solicitantes.xlsx")
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(out.toByteArray());
+    }
+    @GetMapping("/report/applicant-between-dates")
+    public ResponseEntity<List<ApplicantDto>> findApplicantByDateRange(@RequestParam LocalDate startDate, @RequestParam LocalDate endDate){
+
+        List<ApplicantDto> listApplicants = applicantReportService.findApplicantByDateRange(startDate, endDate);
+
+        return ResponseEntity.ok(listApplicants);
     }
 
     @GetMapping("/list-animalsName-between-dates")
