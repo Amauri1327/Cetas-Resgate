@@ -9,10 +9,12 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -69,6 +71,19 @@ public class ApplicantReportService {
         }
     }
 
+    public List<ApplicantDto> findApplicantByDateRange (LocalDate startDate, LocalDate endDate) {
+
+        List<Resgate> resg = repository.findAll();
+
+        List<ApplicantDto> applicants = resg.stream()
+                .filter(resgate -> resgate.getData() != null &&
+                        !resgate.getData().isBefore(startDate) &&
+                        !resgate.getData().isAfter(endDate))
+                .map(resgate -> new ApplicantDto(resgate.getId(), resgate.getApplicant(), resgate.getPhoneApplicant(), resgate.getAddress()))
+                .collect(Collectors.toList());
+
+        return applicants;
+    }
 
 
 }
