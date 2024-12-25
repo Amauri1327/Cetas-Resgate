@@ -22,12 +22,12 @@ public class ReportResgateService {
     }
 
 
-    public List<ResgateDto> buscarResgatesPorEspecieEIntervaloDeDatas(
-            String especie,
-            LocalDate dataInicio,
-            LocalDate dataFim) {
+    public List<ResgateDto> findRescuePerSpecieBetweenDates(
+            String specie,
+            LocalDate startDate,
+            LocalDate endDate) {
 
-        List<Resgate> resgates = resgateRepository.findRescuesBySpecieAndDateRange(especie, dataInicio, dataFim);
+        List<Resgate> resgates = resgateRepository.findRescuesBySpecieAndDateRange(specie, startDate, endDate);
 
         return resgates.stream()
                 .map(resgate -> new ResgateDto(
@@ -117,5 +117,6 @@ public class ReportResgateService {
                         resgate.getAnimalDestination()))
                 .toList();
     }
+
 
 }

@@ -76,7 +76,7 @@ public class ResgateResource {
     public ResponseEntity<byte[]> downloadExcelReport() throws IOException {
         List<ResgateDto> entities = service.findAll();
 
-        ByteArrayOutputStream out = applicantReportService.generateExcelReport(entities);
+        ByteArrayOutputStream out = applicantReportService.generateExcelApplicantReport(entities);
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=relatorio-todos-solicitantes.xlsx")
@@ -85,9 +85,7 @@ public class ResgateResource {
     }
     @GetMapping("/report/applicant-between-dates")
     public ResponseEntity<List<ApplicantDto>> findApplicantByDateRange(@RequestParam LocalDate startDate, @RequestParam LocalDate endDate){
-
         List<ApplicantDto> listApplicants = applicantReportService.findApplicantByDateRange(startDate, endDate);
-
         return ResponseEntity.ok(listApplicants);
     }
 
@@ -97,13 +95,13 @@ public class ResgateResource {
             @RequestParam LocalDate dataInicio,
             @RequestParam LocalDate dataFim) {
 
-        return reportService.buscarResgatesPorEspecieEIntervaloDeDatas(especie, dataInicio, dataFim);
+        return reportService.findRescuePerSpecieBetweenDates(especie, dataInicio, dataFim);
     }
 
     @GetMapping("/list-animalsName-between-dates/export")
     public ResponseEntity<byte[]> downloadExcelAnimalReport( @RequestParam String especie, @RequestParam LocalDate dataInicio, @RequestParam LocalDate dataFim ) throws IOException {
 
-        List<ResgateDto> resgates = reportService.buscarResgatesPorEspecieEIntervaloDeDatas(especie, dataInicio, dataFim);
+        List<ResgateDto> resgates = reportService.findRescuePerSpecieBetweenDates(especie, dataInicio, dataFim);
 
         ByteArrayOutputStream out = reportService.generateExcelAnimalsPerNameBetweenDatesReport(resgates);
 

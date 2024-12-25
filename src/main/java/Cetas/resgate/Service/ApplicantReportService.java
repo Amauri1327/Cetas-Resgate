@@ -9,7 +9,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
@@ -39,8 +38,7 @@ public class ApplicantReportService {
         return resg.stream().map(ApplicantDto::new).collect(Collectors.toList());
     }
 
-
-    public ByteArrayOutputStream generateExcelReport(List<ResgateDto> resgate) throws IOException {
+    public ByteArrayOutputStream generateExcelApplicantReport(List<ResgateDto> resgate) throws IOException {
         // Criar um novo workbook e uma nova planilha
         try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             Sheet sheet = workbook.createSheet("Relatório de todos os solicitantes");
