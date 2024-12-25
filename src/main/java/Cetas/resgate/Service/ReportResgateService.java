@@ -46,7 +46,7 @@ public class ReportResgateService {
     }
 
 
-    public ByteArrayOutputStream generateExcelAnimalsPerNameBetweenDatesReport(List<ResgateDto> resgate) throws IOException {
+    public ByteArrayOutputStream generateExcelAnimalsBetweenDatesReport(List<ResgateDto> resgate) throws IOException {
         // Criar um novo workbook e uma nova planilha
         try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             Sheet sheet = workbook.createSheet("Relatório animail");
@@ -117,6 +117,5 @@ public class ReportResgateService {
                         resgate.getAnimalDestination()))
                 .toList();
     }
-
 
 }
