@@ -7,6 +7,7 @@ import Cetas.resgate.Service.ApplicantReportService;
 import Cetas.resgate.Service.ReportResgateService;
 import Cetas.resgate.Service.ResgateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -133,7 +134,7 @@ public class ResgateResource {
     }
 
     @GetMapping("/list-rescue-between-dates/export")
-    public ResponseEntity<byte[]> downloadExcelRescueByDateRange (@RequestParam LocalDate startDate, LocalDate endDate) throws IOException {
+    public ResponseEntity<byte[]> downloadExcelRescueByDateRange (@RequestParam LocalDate startDate, @RequestParam LocalDate endDate) throws IOException {
 
         List<ResgateDto> resgateDtos = reportService.findRescueByDateRange(startDate,endDate);
 
@@ -143,6 +144,16 @@ public class ResgateResource {
                 .header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=relatorio animal data " + startDate + " e " + endDate +".xlsx")
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(out.toByteArray());
+    }
+
+    @GetMapping("/list-rescue-city-between-dates")
+    public ResponseEntity<List<ResgateDto>> findRescueByCityByDateRange (@RequestParam String city,
+                                                                         @RequestParam LocalDate startDate,
+                                                                         @RequestParam LocalDate endDate) {
+
+        List<ResgateDto> resgateDtos = reportService.findRescueByCityByDateRange(city, startDate, endDate);
+
+         return ResponseEntity.ok(resgateDtos);
     }
 
 }
