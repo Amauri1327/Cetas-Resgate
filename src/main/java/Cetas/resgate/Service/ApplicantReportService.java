@@ -5,9 +5,7 @@ import Cetas.resgate.Dto.ResgateDto;
 import Cetas.resgate.Entities.Resgate;
 import Cetas.resgate.Repositories.ResgateRepository;
 import Cetas.resgate.Service.Exceptions.ResourceNotFoundException;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 
@@ -77,11 +75,55 @@ public class ApplicantReportService {
                 .filter(resgate -> resgate.getData() != null &&
                         !resgate.getData().isBefore(startDate) &&
                         !resgate.getData().isAfter(endDate))
-                .map(resgate -> new ApplicantDto(resgate.getId(), resgate.getApplicant(), resgate.getPhoneApplicant(), resgate.getAddress()))
+                .map(resgate -> new ApplicantDto(resgate.getId(), resgate.getApplicant(), resgate.getPhoneApplicant(), resgate.getAddress(), resgate.getData()))
                 .collect(Collectors.toList());
 
         return applicants;
     }
+
+
+
+    public ByteArrayOutputStream generateExcelApplicantReportByDateRange(List<ApplicantDto> applicantDtos) throws IOException {
+        // Criar um novo workbook e uma nova planilha
+        try (Workbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+            Sheet sheet = workbook.createSheet("Relatório solicitantes");
+
+            CellStyle dateCellStyle = workbook.createCellStyle();
+            DataFormat format = workbook.createDataFormat();
+            dateCellStyle.setDataFormat(format.getFormat("dd-MM-yyyy"));
+
+            // Criacao do cabeçalho
+            Row headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("ID");
+            headerRow.createCell(1).setCellValue("Nome");
+            headerRow.createCell(2).setCellValue("Telefone");
+            headerRow.createCell(3).setCellValue("Endereço");
+            headerRow.createCell(4).setCellValue("Data resgate");
+
+            // Preenchimento das linhas com os dados da entidade
+            int rowIdx = 1;
+            for (ApplicantDto entity : applicantDtos) {
+                Row row = sheet.createRow(rowIdx++);
+                row.createCell(0).setCellValue(entity.id());
+                row.createCell(1).setCellValue(entity.applicant());
+                row.createCell(2).setCellValue(entity.phoneApplicant());
+                row.createCell(3).setCellValue(entity.address());
+
+                Cell dateCell = row.createCell(4);
+                row.createCell(4).setCellValue(entity.data());
+                dateCell.setCellStyle(dateCellStyle);
+
+            }
+            // Auto ajuste das colunas
+            for (int i = 0; i < 4; i++){
+                sheet.autoSizeColumn(i);
+            }
+
+            workbook.write(out);
+            return out;
+        }
+    }
+
 
 
 }

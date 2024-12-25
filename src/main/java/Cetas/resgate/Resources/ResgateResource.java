@@ -89,6 +89,19 @@ public class ResgateResource {
         return ResponseEntity.ok(listApplicants);
     }
 
+    @GetMapping("/report/applicant-between-dates/export")
+    public ResponseEntity<byte[]> downloadExcelApplicantBtDateRangeReport(@RequestParam LocalDate startDate, @RequestParam LocalDate endDate) throws IOException{
+
+        List<ApplicantDto> applicants =  applicantReportService.findApplicantByDateRange(startDate, endDate);
+
+        ByteArrayOutputStream out = applicantReportService.generateExcelApplicantReportByDateRange(applicants);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=relatorio solicitantes data " + startDate + " e " + endDate + ".xlsx")
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(out.toByteArray());
+    }
+
     @GetMapping("/list-animalsName-between-dates")
     public List<ResgateDto> buscarResgates(
             @RequestParam String especie,
