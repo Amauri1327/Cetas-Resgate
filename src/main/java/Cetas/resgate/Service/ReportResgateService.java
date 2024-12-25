@@ -118,6 +118,23 @@ public class ReportResgateService {
                 .toList();
     }
 
+    public List<ResgateDto> findRescueByCityByDateRange(String city, LocalDate startDate, LocalDate endDate){
 
+        List<ResgateDto> resgateDtos = resgateRepository.findRescueByCityByDateRange(city, startDate, endDate);
+
+        return resgateDtos.stream()
+                .map(resgate -> new ResgateDto(
+                        resgate.id(),
+                        resgate.applicant(),
+                        resgate.phoneApplicant(),
+                        resgate.specie(),
+                        resgate.address(),
+                        resgate.neighborhood(),
+                        resgate.city(),
+                        resgate.data(),
+                        resgate.animalSituation(),
+                        resgate.animalDestination()
+                )).toList();
+    }
 
 }
