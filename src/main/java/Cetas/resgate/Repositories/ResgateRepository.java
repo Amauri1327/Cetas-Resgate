@@ -22,7 +22,7 @@ public interface ResgateRepository extends JpaRepository<Resgate, Long> {
     List<Resgate> findRescueByDateRange(@Param("startDate") LocalDate startDate,
                                         @Param("endDate") LocalDate endDate);
 
-    @Query("SELECT c FROM Resgate c WHERE LOWER(c.city) = LOWER(:city)")
+    @Query("SELECT c FROM Resgate c WHERE LOWER(c.city) = LOWER(:city) AND c.data BETWEEN :startDate AND :endDate")
     List<ResgateDto> findRescueByCityByDateRange(@Param("city") String city,
                                                  @Param("startDate") LocalDate startDate,
                                                  @Param("endDate") LocalDate endDate);
