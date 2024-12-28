@@ -29,4 +29,6 @@ public class Resgate implements Serializable {
     private LocalDate data;
     private String animalSituation;
     private String animalDestination;
+    private Integer animalQuantity;
+    private String origin;
 }
