@@ -40,7 +40,9 @@ public class ReportResgateService {
                     resgate.getCity(),
                     resgate.getData(),
                     resgate.getAnimalSituation(),
-                        resgate.getAnimalDestination()))
+                    resgate.getAnimalDestination(),
+                    resgate.getAnimalQuantity(),
+                    resgate.getOrigin()))
                 .toList();
 
     }
@@ -60,13 +62,16 @@ public class ReportResgateService {
             Row headerRow = sheet.createRow(0);
             headerRow.createCell(0).setCellValue("ID");
             headerRow.createCell(1).setCellValue("Espécie");
-            headerRow.createCell(2).setCellValue("Data resgate");
-            headerRow.createCell(3).setCellValue("Situação");
-            headerRow.createCell(4).setCellValue("Destinação");
-            headerRow.createCell(5).setCellValue("Nome");
-            headerRow.createCell(6).setCellValue("Telefone");
-            headerRow.createCell(7).setCellValue("Endereço");
-            headerRow.createCell(8).setCellValue("Cidade");
+            headerRow.createCell(2).setCellValue("Quantidade");
+            headerRow.createCell(3).setCellValue("Origem");
+            headerRow.createCell(4).setCellValue("Data resgate");
+            headerRow.createCell(5).setCellValue("Situação");
+            headerRow.createCell(6).setCellValue("Destinação");
+            headerRow.createCell(7).setCellValue("Nome");
+            headerRow.createCell(8).setCellValue("Telefone");
+            headerRow.createCell(9).setCellValue("Endereço");
+            headerRow.createCell(10).setCellValue("Cidade");
+
 
 
             // Preenchimento das linhas com os dados da entidade
@@ -75,18 +80,20 @@ public class ReportResgateService {
                 Row row = sheet.createRow(rowIdx++);
                 row.createCell(0).setCellValue(entity.id());
                 row.createCell(1).setCellValue(entity.specie());
+                row.createCell(2).setCellValue(entity.animalQuantity());
+                row.createCell(3).setCellValue(entity.origin());
 
-                Cell dateCell = row.createCell(2);
-                row.createCell(2).setCellValue(entity.data());
+                Cell dateCell = row.createCell(4);
+                row.createCell(4).setCellValue(entity.data());
                 dateCell.setCellStyle(dateCellStyle);
 
 
-                row.createCell(3).setCellValue(entity.animalSituation());
-                row.createCell(4).setCellValue(entity.animalDestination());
-                row.createCell(5).setCellValue(entity.applicant());
-                row.createCell(6).setCellValue(entity.phoneApplicant());
-                row.createCell(7).setCellValue(entity.address());
-                row.createCell(8).setCellValue(entity.city());
+                row.createCell(5).setCellValue(entity.animalSituation());
+                row.createCell(6).setCellValue(entity.animalDestination());
+                row.createCell(7).setCellValue(entity.applicant());
+                row.createCell(8).setCellValue(entity.phoneApplicant());
+                row.createCell(9).setCellValue(entity.address());
+                row.createCell(10).setCellValue(entity.city());
             }
 
             // Auto ajuste das colunas
@@ -114,7 +121,9 @@ public class ReportResgateService {
                         resgate.getCity(),
                         resgate.getData(),
                         resgate.getAnimalSituation(),
-                        resgate.getAnimalDestination()))
+                        resgate.getAnimalDestination(),
+                        resgate.getAnimalQuantity(),
+                        resgate.getOrigin()))
                 .toList();
     }
 
@@ -133,8 +142,10 @@ public class ReportResgateService {
                         resgate.city(),
                         resgate.data(),
                         resgate.animalSituation(),
-                        resgate.animalDestination()
-                )).toList();
+                        resgate.animalDestination(),
+                        resgate.animalQuantity(),
+                        resgate.origin()))
+                .toList();
     }
 
 }

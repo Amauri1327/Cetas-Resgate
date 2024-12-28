@@ -43,6 +43,8 @@ public class ResgateService {
         obj.setData(dto.data());
         obj.setAnimalSituation(dto.animalSituation());
         obj.setAnimalDestination(dto.animalDestination());
+        obj.setAnimalQuantity(dto.animalQuantity());
+        obj.setOrigin(dto.origin());
         repo.save(obj);
         return new ResgateDto(obj);
     }
@@ -60,6 +62,8 @@ public class ResgateService {
             obj.setData(dto.data());
             obj.setAnimalSituation(dto.animalSituation());
             obj.setAnimalDestination(dto.animalDestination());
+            obj.setAnimalQuantity(dto.animalQuantity());
+            obj.setOrigin(dto.origin());
             repo.save(obj);
             return new ResgateDto(obj);
         }

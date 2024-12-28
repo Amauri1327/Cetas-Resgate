@@ -15,7 +15,9 @@ public record ResgateDto(
         String city,
         LocalDate data,
         String animalSituation,
-        String animalDestination)
+        String animalDestination,
+        Integer animalQuantity,
+        String origin)
 {
     public ResgateDto (Resgate reg){
         this(
@@ -28,7 +30,9 @@ public record ResgateDto(
                 reg.getCity(),
                 reg.getData(),
                 reg.getAnimalSituation(),
-                reg.getAnimalDestination()
+                reg.getAnimalDestination(),
+                reg.getAnimalQuantity(),
+                reg.getOrigin()
         );
     }
 }

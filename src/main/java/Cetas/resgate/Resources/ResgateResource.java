@@ -7,7 +7,6 @@ import Cetas.resgate.Service.ApplicantReportService;
 import Cetas.resgate.Service.ReportResgateService;
 import Cetas.resgate.Service.ResgateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
