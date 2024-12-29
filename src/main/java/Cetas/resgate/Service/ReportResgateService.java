@@ -148,5 +148,25 @@ public class ReportResgateService {
                 .toList();
     }
 
+    public List<ResgateDto> findRescueByOriginAndDateRange(String origin, LocalDate startDate, LocalDate endDate){
+
+        List<ResgateDto> resgateDtos = resgateRepository.findRescueByOriginAndDateRange(origin, startDate, endDate);
+
+        return  resgateDtos.stream()
+                .map(resgate -> new ResgateDto(
+                        resgate.id(),
+                        resgate.applicant(),
+                        resgate.phoneApplicant(),
+                        resgate.specie(),
+                        resgate.address(),
+                        resgate.neighborhood(),
+                        resgate.city(),
+                        resgate.data(),
+                        resgate.animalSituation(),
+                        resgate.animalDestination(),
+                        resgate.animalQuantity(),
+                        resgate.origin()))
+                .toList();
+    }
 
 }
