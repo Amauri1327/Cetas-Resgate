@@ -179,4 +179,17 @@ public class ResgateResource {
         return ResponseEntity.ok(resgateDtos);
     }
 
+    @GetMapping("/list-rescue-origin-between-dates/export")
+    public ResponseEntity<byte[]> downloadExcelOriginByDateRange(@RequestParam String origin, @RequestParam LocalDate startDate, @RequestParam LocalDate endDate ) throws IOException {
+
+        List<ResgateDto> resgateDtos = reportService.findRescueByOriginAndDateRange(origin, startDate, endDate);
+
+        ByteArrayOutputStream out = reportService.generateExcelAnimalsBetweenDatesReport(resgateDtos);
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=relatorio_resgate_origem="+ origin +"_data_"+ startDate +"_e_"+ endDate +".xlsx")
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(out.toByteArray());
+    }
+
 }
