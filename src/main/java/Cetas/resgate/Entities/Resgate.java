@@ -31,4 +31,5 @@ public class Resgate implements Serializable {
     private String animalDestination;
     private Integer animalQuantity;
     private String origin;
+
 }
