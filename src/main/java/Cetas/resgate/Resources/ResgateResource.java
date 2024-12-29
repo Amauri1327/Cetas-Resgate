@@ -171,4 +171,12 @@ public class ResgateResource {
                 .body(out.toByteArray());
     }
 
+    @GetMapping("/list-rescue-origin-between-dates")
+    public ResponseEntity<List<ResgateDto>> findRescueByOriginAndDateRange(@RequestParam String origin, @RequestParam LocalDate startDate, @RequestParam LocalDate endDate){
+
+        List<ResgateDto> resgateDtos = reportService.findRescueByOriginAndDateRange(origin, startDate, endDate);
+
+        return ResponseEntity.ok(resgateDtos);
+    }
+
 }
