@@ -7,7 +7,6 @@ import Cetas.resgate.Service.ApplicantReportService;
 import Cetas.resgate.Service.ReportResgateService;
 import Cetas.resgate.Service.ResgateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.List;
 

@@ -19,9 +19,10 @@ Melhorar e simplificar a forma de armazenar os dados e ajudar uma colega de trab
 - **POST** `/resgates`: Registra um novo resgate.
 - **PUT** `/resgates/{id}`: Atualiza um resgate existente.
 - **DELETE** `/resgates/{id}`: Remove um resgate.
-- **GET** `/resgates/report`: Retorna relatorio de todos os solicitantes.
-- **GET** `/resgates/report/{id}`: Retorna dados do solicitante.
-- **GET** `/report/excel`: Exporta os dados do solicitante em Excel.
-
+- **GET** `/resgates/report/applicant`: Retorna relatorio de todos os solicitantes.
+- **GET** `/resgates/report/applicant/{id}`: Retorna dados do solicitante.
+- **GET** `/resgates/report/applicant/excel`: Exporta os dados de todos os solicitante em Excel.
+- **GET** `/resgates/report/applicant-between-dates/`: Retorna os dados do solicitante entre intervalos de datas.
+- **GET** `/resgates/report/applicant-between-dates/export`: Exporta em excel os dados do solicitante entre intervalos de datas.
 
 
