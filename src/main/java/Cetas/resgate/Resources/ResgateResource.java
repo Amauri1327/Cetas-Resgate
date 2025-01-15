@@ -6,7 +6,12 @@ import Cetas.resgate.Dto.ResgateDto;
 import Cetas.resgate.Service.ApplicantReportService;
 import Cetas.resgate.Service.ReportResgateService;
 import Cetas.resgate.Service.ResgateService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +38,21 @@ public class ResgateResource {
     public ResponseEntity<List<ResgateDto>> findAll(){
         List<ResgateDto> list = service.findAll();
         return ResponseEntity.ok().body(list);
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<ResgateDto>> findByIdPageable(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id,asc") String[]sort) {
+
+        Sort.Direction direction = Sort.Direction.fromString(sort[1]);
+        Sort sortOrder = Sort.by(direction, sort[0]);
+        Pageable pageable = PageRequest.of(page, size, sortOrder);
+
+        Page<ResgateDto> resgates = service.findByIdPageable(pageable);
+
+        return ResponseEntity.ok(resgates);
     }
 
     @GetMapping("/{id}")
