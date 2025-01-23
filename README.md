@@ -129,3 +129,17 @@ Melhorar e simplificar a forma de armazenar dados, além de ajudar uma colega de
 - Implementação de autenticação e autorização.
 
 ---
+
+## 🔗Repositório do Frontend
+
+O repositório do frontend do projeto está disponível no GitHub:  
+[Frontend do Cetas-Resgate](https://github.com/Amauri1327/Front-end-Cetas-Resgate)
+
+---
+
+## 📧 Contato
+
+Caso tenha dúvidas ou sugestões, entre em contato:
+
+- **Email:** amauri1816@hotmail.com
+- **LinkedIn:** [Amauri Ferreira](https://www.linkedin.com/in/amauri-ferreira/)  
